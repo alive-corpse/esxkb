@@ -1,0 +1,148 @@
+partial
+xkb_types "hyper" {
+    virtual_modifiers Alt,Hyper;
+
+    type "HYPER" {
+        modifiers= Shift+Control+Alt+Hyper;
+
+        map[Shift]= Level2;
+        preserve[Shift]= Shift;
+
+        map[Control]= Level1;
+        preserve[Control]= Control;
+
+        map[Shift+Control]= Level2;
+        preserve[Shift+Control]= Shift+Control;
+
+        map[Alt]= Level1;
+        preserve[Alt]= Alt;
+
+        map[Shift+Alt]= Level2;
+        preserve[Shift+Alt]= Shift+Alt;
+
+        map[Control+Alt]= Level1;
+        preserve[Control+Alt]= Control+Alt;
+
+        map[Shift+Control+Alt]= Level2;
+        preserve[Shift+Control+Alt]= Shift+Alt;
+
+        map[Hyper]= Level3;
+
+        map[Shift+Hyper]= Level4;
+
+        level_name[Level1]= "Normal";
+        level_name[Level2]= "Shift";
+        level_name[Level3]= "Hyper";
+        level_name[Level4]= "Shift+Hyper";
+    };
+};
+
+
+partial
+xkb_symbols "hyper_mod" {
+    replace key <AE01> {
+        type = "HYPER", 
+        symbols[Group1] = [1, exclam, F1],
+        symbols[Group2] = [1, exclam, F1]
+    };
+    replace key <AE02> {
+        type = "HYPER",
+        symbols[Group1] = [2, at, F2],
+        symbols[Group2] = [2, quotedbl, F2]
+    };
+    replace key <AE03> {
+        type = "HYPER",
+        symbols[Group1] = [3, numbersign, F3],
+        symbols[Group2] = [3, numerosign, F3]
+    };
+    replace key <AE04> {
+        type = "HYPER",
+        symbols[Group1] = [4, dollar, F4],
+        symbols[Group2] = [4, semicolon, F4]
+    };
+    replace key <AE05> {
+        type = "HYPER", 
+        symbols[Group1] = [5, percent, F5],
+        symbols[Group2] = [5, percent, F5]
+    };
+    replace key <AE06> {
+        type = "HYPER",
+        symbols[Group1] = [6, asciicircum, F6],
+        symbols[Group2] = [6, colon, F6]
+    };
+    replace key <AE07> {
+        type = "HYPER",
+        symbols[Group1] = [7, ampersand, F7],
+        symbols[Group2] = [7, question, F7]
+    };
+    replace key <AE08> {
+        type = "HYPER", 
+        symbols[Group1] = [8, asterisk, F8],
+        symbols[Group2] = [8, asterisk, F8]
+    };
+    replace key <AE09> {
+        type = "HYPER", 
+        symbols[Group1] = [9, parenleft, F9],
+        symbols[Group2] = [9, parenleft, F9]
+    };
+    replace key <AE10> {
+        type = "HYPER", 
+        symbols[Group1] = [0, parenright, F10],
+        symbols[Group2] = [0, parenright, F10]
+    };
+    replace key <AE11> {
+        type = "HYPER", 
+        symbols[Group1] = [minus, underscore, F11],
+        symbols[Group2] = [minus, underscore, F11]
+    };
+    replace key <AE12> {
+        type = "HYPER", 
+        symbols[Group1] = [equal, plus, F12],
+        symbols[Group2] = [equal, plus, F12]
+    };
+
+#    replace key <AC06> {
+#        type = "HYPER",
+#        symbols[Group1]= [h, H, Left],
+#        symbols[Group2]= [Cyrillic_er, Cyrillic_ER, Left]
+#    };
+
+    # Navigation
+    replace key <AC07> {
+        type = "HYPER", 
+        symbols[Group1] = [j, J, Left, Home],
+        symbols[Group2] = [Cyrillic_o, Cyrillic_O, Left, Home]
+    };
+    replace key <AC08> {
+        type = "HYPER", 
+        symbols[Group1] = [k, K, Down, Next],
+        symbols[Group2] = [Cyrillic_el, Cyrillic_EL, Down, Next]
+    };
+    replace key <AC09> {
+        type = "HYPER", 
+        symbols[Group1] = [l, L, Up, Prior],
+        symbols[Group2] = [Cyrillic_de, Cyrillic_DE, Up, Prior]
+    };
+    replace key <AC10> {
+        type = "HYPER", 
+        symbols[Group1] = [semicolon, colon, Right, End],
+        symbols[Group2] = [Cyrillic_zhe, Cyrillic_zhe, Right, End]
+    };
+
+
+};
+
+
+partial modifier_keys
+xkb_symbols "caps_hyper" {
+    replace key <CAPS> {
+        [ Hyper_R ]
+    };
+    # Remove Hyper (Hyper_L/Hyper_R) from Mod4, was added by "pc" layout
+    modifier_map none { <HYPR> };
+    # Now make physical caps lock (mapped to Hyper_R above) control Mod3.  Mod3 is
+    # associated with the virtual modifier "Hyper" because the existing XKB config
+    # links Hyper_L and Hyper_R with this virtual modifier.  Therefore Mod3 becomes
+    # the virtual modifier "Hyper" because they both share the same keysym Hyper_R.
+    modifier_map Mod3 { <CAPS> };
+};

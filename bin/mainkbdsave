@@ -1,0 +1,6 @@
+#!/bin/sh
+PREF=~/.xkb/keymap
+[ -d $PREF ] || mkdir -p $PREF
+setxkbmap -print > $PREF/mykbd
+SYM=~/.xkb/symbols
+[ -d $SYM ] || mkdir -p $SYM
