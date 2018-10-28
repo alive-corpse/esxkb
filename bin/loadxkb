@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd `dirname "$0"`/..
+cdir=`pwd`
+
+[ -z "$1" ] && cd $cdir/keymap && echo "Usage: $0 <kbdmap name>\n\nCurrent layouts:\n`ls * | sed 's/^/\t/'`\n" && exit 1
+xkbcomp -I$cdir $cdir/keymap/$1 $DISPLAY
