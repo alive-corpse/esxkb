@@ -129,6 +129,27 @@ xkb_symbols "hyper_mod" {
         symbols[Group2] = [Cyrillic_zhe, Cyrillic_zhe, Right, End]
     };
 
+    key <AD07> {
+        type= "HYPER",
+        symbols[Group1]= [u, U, Home],
+        symbols[Group2]= [Cyrillic_ghe, Cyrillic_GHE, Home]
+    };
+    key <AD08> {
+        type= "HYPER",
+        symbols[Group1]= [i, I, Next],
+        symbols[Group2]= [Cyrillic_sha, Cyrillic_SHA, Next]
+    };
+    key <AD09> {
+        type= "HYPER",
+        symbols[Group1]= [o, O, Prior],
+        symbols[Group2]= [Cyrillic_shcha, Cyrillic_SHCHA, Prior]
+    };
+    key <AD10> {
+        type= "HYPER",
+        symbols[Group1]= [p, P, End],
+        symbols[Group2]= [Cyrillic_ze, Cyrillic_ZE, End]
+    };
+
 
 };
 
@@ -138,11 +159,6 @@ xkb_symbols "caps_hyper" {
     replace key <CAPS> {
         [ Hyper_R ]
     };
-    # Remove Hyper (Hyper_L/Hyper_R) from Mod4, was added by "pc" layout
     modifier_map none { <HYPR> };
-    # Now make physical caps lock (mapped to Hyper_R above) control Mod3.  Mod3 is
-    # associated with the virtual modifier "Hyper" because the existing XKB config
-    # links Hyper_L and Hyper_R with this virtual modifier.  Therefore Mod3 becomes
-    # the virtual modifier "Hyper" because they both share the same keysym Hyper_R.
     modifier_map Mod3 { <CAPS> };
 };
